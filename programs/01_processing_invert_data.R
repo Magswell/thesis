@@ -844,5 +844,5 @@ save(avg_liatris,file = "data/processed_data/avg_liatris.Rdata")
 devtools::session_info()
 #' This document was "spun" with:
 #' 
-#' ezspin(file = "programs/thesis_programs/01_processing_invert_data.R", out_dir = "output/thesis_results_spun", fig_dir = "figures", keep_md = F)
+#' ezspin(file = "programs/01_processing_invert_data.R", out_dir = "output/thesis_results_spun", fig_dir = "figures", keep_md = F)
 #' 
