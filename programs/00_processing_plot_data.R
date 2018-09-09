@@ -347,4 +347,5 @@ save(canopy.mean, canopy.sd,
 devtools::session_info()
 #' This document was "spun" with:
 #' 
-#' ezspin(file = "programs/00_thesis_programs/00_processing_plot_data.R", out_dir = "output/thesis_results_spun", fig_dir = "figures", keep_md = F)
+#' ezspin(file = "programs/00_processing_plot_data.R", out_dir = "output/thesis_results_spun", fig_dir = "figures", keep_md = F)
+#' 
