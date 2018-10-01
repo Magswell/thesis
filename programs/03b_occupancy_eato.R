@@ -1,6 +1,6 @@
 #' # Model comparison for occupancy data: Eastern Towhee
 #' 
-#' Description: XX
+#' Description: In this document, I used unmarked to run and compare occupancy models for EATO.
 #' 
 #' 
 #' 
