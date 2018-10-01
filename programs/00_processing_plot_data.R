@@ -62,7 +62,7 @@ elev.snwr$elev_cv <- elev.snwr$STD/elev.snwr$MEAN
 elev.snwr <- elev.snwr[,c("PLOT_NO", "elev_cv")]
 elev.all <- rbind(elev.sdsf, elev.snwr)
 
-#' Add Coef of variation to plot-level data
+#' Add coefficient of variation to plot-level data
 plot.data <- merge(x = plot.data, y = elev.all, by.x = "plot", by.y = "PLOT_NO", all.x = T)
 
 #' 
