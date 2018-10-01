@@ -10,8 +10,6 @@ library(knitr) # documentation-related
 library(ezknitr) # documentation-related
 library(devtools) # documentation-related
 
-# analysis-related
-
 #' Clear environment and set seed
 #' 
 remove(list = ls())
@@ -29,7 +27,7 @@ lasp.data <- read.csv("data/raw_data/20171020_LASP_occ.csv")
 elev.sdsf <- read.delim("data/shapefile_data/sdsf_zone_stat.txt", sep = ",")
 elev.snwr <- read.delim("data/shapefile_data/snwr_zone_stat.txt", sep = ",")
 
-#' Load Average Liatris by plot
+#' Load average liatris by plot
 load("data/processed_data/avg_liatris.Rdata")
 
 #' ## Process Data - Create plot-level dataset
