@@ -142,6 +142,7 @@ abnd.eato.plot <- ggplot(data = nd.eato, aes(x=canopyOrig, y=lam.predict.mean)) 
   xlab("Canopy Cover") +
   annotate("text", label = "A", x=10, y=5) +
   theme_classic()
+ggsave(filename = "output/EATO_plotA_thesis.png",device = "png")
 
 #' Detection plot
 det.eato.plot <- ggplot(data = nd.eato, aes(x=dateOrig, y=p.predict.mean)) +
@@ -152,10 +153,12 @@ det.eato.plot <- ggplot(data = nd.eato, aes(x=dateOrig, y=p.predict.mean)) +
   xlab("Days past May 1") +
   annotate("text", label = "B", x=22, y=1) +
   theme_classic()
+ggsave(filename = "output/EATO_plotB_thesis.png",device = "png")
 
 #' Organize abundance and detection plots side-by-side in one graphic
 #+ resultsEATO
 grid.arrange(abnd.eato.plot, det.eato.plot, ncol = 2)
+
 
 #' Figure for DNR report
 #+ resultsEATO_DNRreport
