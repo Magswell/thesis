@@ -297,6 +297,7 @@ abnd.lasp.c.plot <- ggplot(data = nd.lasp, aes(x=canopyOrig, y=lam.predict.mean.
   xlab("Canopy Cover") +
   annotate("text", label = "A", x=10, y=5) +
   theme_classic()
+ggsave(filename = "output/LASP_plotA_thesis.png",device = "png")
 
 abnd.lasp.ns.plot <- ggplot(data = nd.lasp, aes(x=numwoodOrig, y=lam.predict.mean.numwood)) +
   geom_line()+
@@ -307,6 +308,7 @@ abnd.lasp.ns.plot <- ggplot(data = nd.lasp, aes(x=numwoodOrig, y=lam.predict.mea
   xlab("Number of Woody Stems") +
   annotate("text", label = "B", x=1, y=5) +
   theme_classic()
+ggsave(filename = "output/LASP_plotB_thesis.png",device = "png")
 
 grid.arrange(abnd.lasp.c.plot, abnd.lasp.ns.plot, ncol = 2)
 
