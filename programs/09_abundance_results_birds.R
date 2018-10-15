@@ -194,7 +194,7 @@ dfms.lasp <- fitList(
 
 #' Transform parameters
 #' 
-#'  Model 1
+#'  Model 1 (disturbance)
 coef(lasp.abnd.d.NB.pDT, type="lambda")
 confint(lasp.abnd.d.NB.pDT, type="lambda", level=0.85)
 coef(lasp.abnd.d.NB.pDT, type="det")
@@ -204,7 +204,7 @@ confint(lasp.abnd.d.NB.pDT, type="gamma", level=0.85)
 coef(lasp.abnd.d.NB.pDT, type="omega")
 confint(lasp.abnd.d.NB.pDT, type="omega", level=0.85)
 
-#'  Model 2
+#'  Model 2 (canopy)
 coef(lasp.abnd.c.NB.pDT, type="lambda")
 confint(lasp.abnd.c.NB.pDT, type="lambda", level=0.85)
 coef(lasp.abnd.c.NB.pDT, type="det")
@@ -214,7 +214,7 @@ confint(lasp.abnd.c.NB.pDT, type="gamma", level=0.85)
 coef(lasp.abnd.c.NB.pDT, type="omega")
 confint(lasp.abnd.c.NB.pDT, type="omega", level=0.85)
 
-#'  Model 3
+#'  Model 3 (woody stems)
 coef(lasp.abnd.st.NB.pDT, type="lambda")
 confint(lasp.abnd.st.NB.pDT, type="lambda", level=0.85)
 coef(lasp.abnd.st.NB.pDT, type="det")
@@ -224,7 +224,7 @@ confint(lasp.abnd.st.NB.pDT, type="gamma", level=0.85)
 coef(lasp.abnd.st.NB.pDT, type="omega")
 confint(lasp.abnd.st.NB.pDT, type="omega", level=0.85)
 
-#'  Model 4
+#'  Model 4 (null)
 coef(lasp.abnd.null.NB.pDT, type="lambda")
 confint(lasp.abnd.null.NB.pDT, type="lambda", level=0.85)
 coef(lasp.abnd.null.NB.pDT, type="det")
@@ -234,7 +234,7 @@ confint(lasp.abnd.null.NB.pDT, type="gamma", level=0.85)
 coef(lasp.abnd.null.NB.pDT, type="omega")
 confint(lasp.abnd.null.NB.pDT, type="omega", level=0.85)
 
-#'  Model 5
+#'  Model 5 (litter)
 coef(lasp.abnd.l.NB.pDT, type="lambda")
 confint(lasp.abnd.l.NB.pDT, type="lambda", level=0.85)
 coef(lasp.abnd.l.NB.pDT, type="det")
