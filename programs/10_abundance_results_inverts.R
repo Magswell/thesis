@@ -1,4 +1,4 @@
-#' # Bird results - Figures & Tables
+#' # Invert results - Figures & Tables
 #' 
 #' Description: Model comparison tables and figures
 #' 
@@ -75,7 +75,7 @@ dfms.cipa <- fitList("lam(.)p(.)gamma(.)omega(.)-NB"  = cipa.abnd.null.NB,
 )
 (dms <- modSel(dfms.cipa)) 
 
-#'  Model 1
+#'  Model 1 (elevation)
 coef(cipa.abnd.e.NB, type="lambda")
 confint(cipa.abnd.e.NB, type="lambda", level=0.85)
 coef(cipa.abnd.e.NB, type="det")
@@ -86,7 +86,7 @@ coef(cipa.abnd.e.NB, type="omega")
 confint(cipa.abnd.e.NB, type="omega", level=0.85)
 cipa.abnd.e.NB
 
-#'  Model 2
+#'  Model 2 (canopy)
 coef(cipa.abnd.c.NB, type="lambda")
 confint(cipa.abnd.c.NB, type="lambda", level=0.85)
 coef(cipa.abnd.c.NB, type="det")
@@ -97,7 +97,7 @@ coef(cipa.abnd.c.NB, type="omega")
 confint(cipa.abnd.c.NB, type="omega", level=0.85)
 cipa.abnd.c.NB
 
-#'  Model 3
+#'  Model 3 (null)
 coef(cipa.abnd.null.NB, type="lambda")
 confint(cipa.abnd.null.NB, type="lambda", level=0.85)
 coef(cipa.abnd.null.NB, type="det")
@@ -108,7 +108,7 @@ coef(cipa.abnd.null.NB, type="omega")
 confint(cipa.abnd.null.NB, type="omega", level=0.85)
 cipa.abnd.null.NB
 
-#'  Model 4
+#'  Model 4 (litter)
 coef(cipa.abnd.l.NB, type="lambda")
 confint(cipa.abnd.l.NB, type="lambda", level=0.85)
 coef(cipa.abnd.l.NB, type="det")
@@ -132,7 +132,7 @@ dfms.hele <- fitList("lam(.)p(.)gamma(.)omega(.)-NB"  = hele.abnd.null.NB,
                 "lam(dy_pre2015)p(.)gamma(.)omega(.)-NB"  = hele.abnd.d.NB)
 (dms <- modSel(dfms.hele)) 
 
-#'  Model 1
+#'  Model 1 (liatris)
 coef(hele.abnd.t.NB, type="lambda")
 confint(hele.abnd.t.NB, type="lambda", level=0.85)
 coef(hele.abnd.t.NB, type="det")
@@ -143,7 +143,7 @@ coef(hele.abnd.t.NB, type="omega")
 confint(hele.abnd.t.NB, type="omega", level=0.85)
 hele.abnd.t.NB
 
-#'  Model 2
+#'  Model 2 (distrubance)
 coef(hele.abnd.d.NB, type="lambda")
 confint(hele.abnd.d.NB, type="lambda", level=0.85)
 coef(hele.abnd.d.NB, type="det")
@@ -154,7 +154,7 @@ coef(hele.abnd.d.NB, type="omega")
 confint(hele.abnd.d.NB, type="omega", level=0.85)
 hele.abnd.d.NB
 
-#'  Model 3
+#'  Model 3 (null)
 coef(hele.abnd.null.NB, type="lambda")
 confint(hele.abnd.null.NB, type="lambda", level=0.85)
 coef(hele.abnd.null.NB, type="det")
@@ -165,7 +165,7 @@ coef(hele.abnd.null.NB, type="omega")
 confint(hele.abnd.null.NB, type="omega", level=0.85)
 hele.abnd.null.NB
 
-#'  Model 4
+#'  Model 4 (nonbunchgrass)
 coef(hele.abnd.nb.NB, type="lambda")
 confint(hele.abnd.nb.NB, type="lambda", level=0.85)
 coef(hele.abnd.nb.NB, type="det")
@@ -176,7 +176,7 @@ coef(hele.abnd.nb.NB, type="omega")
 confint(hele.abnd.nb.NB, type="omega", level=0.85)
 hele.abnd.nb.NB
 
-#'  Model 5
+#'  Model 5 (bunchgrass)
 coef(hele.abnd.b.NB, type="lambda")
 confint(hele.abnd.b.NB, type="lambda", level=0.85)
 coef(hele.abnd.b.NB, type="det")
@@ -187,7 +187,7 @@ coef(hele.abnd.b.NB, type="omega")
 confint(hele.abnd.b.NB, type="omega", level=0.85)
 hele.abnd.b.NB
 
-#'  Model 6
+#'  Model 6 (litter)
 coef(hele.abnd.l.NB, type="lambda")
 confint(hele.abnd.l.NB, type="lambda", level=0.85)
 coef(hele.abnd.l.NB, type="det")
@@ -198,7 +198,7 @@ coef(hele.abnd.l.NB, type="omega")
 confint(hele.abnd.l.NB, type="omega", level=0.85)
 hele.abnd.l.NB
 
-#'  Model 7
+#'  Model 7 (canopy)
 coef(hele.abnd.c.NB, type="lambda")
 confint(hele.abnd.c.NB, type="lambda", level=0.85)
 coef(hele.abnd.c.NB, type="det")
