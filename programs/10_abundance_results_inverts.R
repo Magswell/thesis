@@ -354,7 +354,7 @@ data_summary <- function(x) {
 #+ resultsHELE_violin
 ggplot(aes(y = Posteriors, x = Covariate), data = posteriors.hele) + 
   geom_violin() +
-  facet_wrap(facets = "Model") +
+  facet_grid(facets = .~Model, scales = "free_x", space = "free_x") +
   stat_summary(fun.data=data_summary, 
                geom="pointrange", color="red") +
   geom_hline(yintercept = 0)
