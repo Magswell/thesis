@@ -1,0 +1,56 @@
+
+    model {
+  ###### Priors and constraints
+    # Priors for abundance
+    b0.abund ~ dgamma(0.1, 0.01) # Vague prior for mean initial lambda (mean 10, up to 600)
+    log.b0.abund <- log(b0.abund) # convert to log scale for covariate modeling
+    b1.abund ~ dnorm(0,0.25) # abundance covariate for disturbance, log scale
+    b2.abund ~ dnorm(0,0.25) # abundance covariate for liatris, log scale
+    sd.abund ~ dunif(0.1,5) # prior for within-plot among-survey variation in abundance
+    tau.abund <- pow(sd.abund,-2) # convert to precision for JAGS
+    
+    # Priors for zero inflation (occupancy)
+    b0.psi ~ dnorm(0,0.25)
+    b1.psi ~ dnorm(0,0.25)  # liatris effect on psi 
+    
+    # Beta-binomial priors for detection
+    alpha.p ~ dgamma(.01,.01)   # Vague priors for a and b for beta distribution (to model p)
+    beta.p ~ dgamma(.01,.01)
+    p.derived <- alpha.p/(alpha.p+beta.p) # mean detection probability
+    
+    ###### Likelihood
+    # Biological model for plot-level occupancy/abundance
+    for(pp in 1:n.plots) {
+    # Probability of occupancy
+    logit(psi[pp]) <- b0.psi + 
+    b1.psi * liatris[pp] 
+    
+    # Site occupancy
+    z[pp] ~ dbern(psi[pp])   # is site even occupied (z = 1)?
+    
+    # Model for mean abundance
+    logN.mean[pp] <- log.b0.abund + 
+    b1.abund * disturbance[pp] +
+    b2.abund * liatris[pp]
+    
+    for (ss in 1:n.surveys){
+    logN.eps[pp,ss] ~ dnorm(0, tau.abund)  # generate random error on log scale
+    N.pred[pp,ss] <- exp(logN.mean[pp] + logN.eps[pp,ss]) # backtransform to real scale
+    N.est[pp,ss] ~ dpois(N.pred[pp,ss])
+    N.true[pp,ss] <- z[pp]*(N.est[pp,ss]+1) # +1 to create hurdle so all zeroes come from z
+    } # ss number of survey periods
+    } # pp is row number (plot)
+    
+    # Observation model for replicated counts
+    for (pp in 1:n.plots){
+    for (ss in 1:n.surveys){
+    for (rr in 1:n.reps){
+    # allow each replicate to have independent detection probability
+    p[pp,ss,rr] ~ dbeta(alpha.p, beta.p)
+    # compare observed counts to estimated detection and abundance
+    y[pp,((ss-1)*3+rr)] ~ dbin(p[pp,ss,rr], N.true[pp,ss])
+    } # n.reps is number of counts per period (3)
+    } # close n.surveys
+    } # close n.plots
+    } # end JAGS model
+    

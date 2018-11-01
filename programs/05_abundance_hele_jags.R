@@ -75,8 +75,7 @@ hele.data <- list(y = hele[,grep("hele_", x = colnames(hele))],
                   n.surveys = 4, 
                   n.reps = 3, 
                   disturbance = hele$DY_pre2015,
-                  liatris = hele.plotLiatris.z,
-                  bunchgrass = hele$bunchgrass.z)
+                  liatris = hele.plotLiatris.z)
 
 
 #' Generate initial values
@@ -110,8 +109,8 @@ hele.model <- function(){
   
   # Priors for zero inflation (occupancy)
   b0.psi ~ dnorm(0,0.25)
-  b1.psi ~ dnorm(0,0.25)  # disturbance effect on psi 
-  b2.psi ~ dnorm(0,0.25) # covariate for liatris cover, logit scale
+  b1.psi ~ dnorm(0,0.25)  # psi covariate for liatris, log scale
+
   
   # Beta-binomial priors for detection
   alpha.p ~ dgamma(.01,.01)   # Vague priors for a and b for beta distribution (to model p)
@@ -123,8 +122,7 @@ hele.model <- function(){
   for (pp in 1:n.plots) {
     # Probability of occupancy
     logit(psi[pp]) <- b0.psi + 
-      b1.psi * bunchgrass[pp] + 
-      b2.psi * liatris[pp] 
+      b1.psi * liatris[pp] 
     
     # Site occupancy
     z[pp] ~ dbern(psi[pp])   # is site even occupied (z = 1)?
@@ -170,8 +168,7 @@ cat("
     
     # Priors for zero inflation (occupancy)
     b0.psi ~ dnorm(0,0.25)
-    b1.psi ~ dnorm(0,0.25)  # disturbance effect on psi 
-    b2.psi ~ dnorm(0,0.25) # covariate for liatris cover, logit scale
+    b1.psi ~ dnorm(0,0.25)  # liatris effect on psi 
     
     # Beta-binomial priors for detection
     alpha.p ~ dgamma(.01,.01)   # Vague priors for a and b for beta distribution (to model p)
@@ -183,8 +180,7 @@ cat("
     for(pp in 1:n.plots) {
     # Probability of occupancy
     logit(psi[pp]) <- b0.psi + 
-    b1.psi * bunchgrass[pp] + 
-    b2.psi * liatris[pp] 
+    b1.psi * liatris[pp] 
     
     # Site occupancy
     z[pp] ~ dbern(psi[pp])   # is site even occupied (z = 1)?
@@ -219,15 +215,15 @@ sink()
 
 #' Parameters monitored
 parms <- c("b0.abund", "b1.abund", "sd.abund", "b2.abund", 
-           "b0.psi", "b1.psi", "b2.psi", 
+           "b0.psi", "b1.psi", 
            "alpha.p", "beta.p", "p.derived",
            "z", "N.true") 
 
 #' MCMC settings (settings for final run, reduce 100-fold for exploratory analysis)
-na <- 1000 #final has 1000
-ni <- 250000 #final has 250000
-nt <- 10 #final has 10
-nb <- 50000 #final has 50000
+na <- 100 #final has 1000
+ni <- 25000 #final has 250000
+nt <- 1 #final has 10
+nb <- 5000 #final has 50000
 nc <- 3 #final has 3
 
 #' Run the model 
@@ -249,7 +245,7 @@ print(hele_JAGS, digits=3)
 #' ## Save files
 #' 
 #' 
-save(hele_JAGS, file="data/output_data/hele_JAGS_out_final20180801.Rdata")
+save(hele_JAGS, file="data/output_data/hele_JAGS_out_prelim_20181031.Rdata")
 
 #' _____________________________________________________________________________
 #' ### Footer
