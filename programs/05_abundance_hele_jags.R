@@ -220,10 +220,10 @@ parms <- c("b0.abund", "b1.abund", "sd.abund", "b2.abund",
            "z", "N.true") 
 
 #' MCMC settings (settings for final run, reduce 100-fold for exploratory analysis)
-na <- 100 #final has 1000
-ni <- 25000 #final has 250000
-nt <- 1 #final has 10
-nb <- 5000 #final has 50000
+na <- 1000 #final has 1000
+ni <- 250000 #final has 250000
+nt <- 10 #final has 10
+nb <- 50000 #final has 50000
 nc <- 3 #final has 3
 
 #' Run the model 
