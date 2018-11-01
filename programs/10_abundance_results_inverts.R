@@ -33,7 +33,7 @@ set.seed(2583722)
 load("data/output_data/cipa_JAGS_out_final.Rdata")
 
 #' HELE model
-load("data/output_data/hele_JAGS_out_final20180801.Rdata")
+load("data/output_data/hele_JAGS_out_20181031.Rdata")
 
 #' **Unmarked models**
 #' 
@@ -302,13 +302,10 @@ quantile(b1.abnd, probs = c(0.075, 0.925))
 b2.abnd <- hele_JAGS$sims.list$b2.abund
 quantile(b2.abnd, probs = c(0.075, 0.925))
 
-#' Occupancy covariate: elevation
+#' Occupancy covariate: liatris
 b1.psi <- hele_JAGS$sims.list$b1.psi
 quantile(b1.psi, probs = c(0.075, 0.925))
 
-#' Occupancy covariate: canopy
-b2.psi <- hele_JAGS$sims.list$b2.psi
-quantile(b2.psi, probs = c(0.075, 0.925))
 
 #' ### Violin Plot for CIPA
 #' 
@@ -328,7 +325,7 @@ b2.abnd$model <- "Abundance"
 
 b1.psi <- as.data.frame(b1.psi)
 b1.psi$parameter <- "b1.psi"
-b1.psi$covariate <- "Bunchgrass"
+b1.psi$covariate <- "Liatris"
 b1.psi$model <- "Occupancy"
 
 b2.psi <- as.data.frame(b2.psi)
@@ -341,7 +338,7 @@ colnames(b1.abnd) <-
   colnames(b1.psi) <-
   colnames(b2.psi) <-
   c("Posteriors", "Parameter", "Covariate", "Model")
-posteriors.hele <- rbind(b1.abnd, b2.abnd, b1.psi, b2.psi)
+posteriors.hele <- rbind(b1.abnd, b2.abnd, b1.psi)
 
 #' Function to produce summary statistics (mean and +/- sd)
 data_summary <- function(x) {
