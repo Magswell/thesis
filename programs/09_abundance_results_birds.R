@@ -51,6 +51,9 @@ load(file = "data/output_data/lasp_abnd_null_NB_pDT.Rdata")
 lasp.abnd.null.NB.pDT <- abnd.null.NB.pDT
 load(file = "data/output_data/lasp_abnd_l_NB_pDT.Rdata")
 lasp.abnd.l.NB.pDT <- abnd.l.NB.pDT
+load(file = "data/output_data/lasp_abnd_dcst_NB_pDT.Rdata")
+lasp.abnd.dcst.NB.pDT <- abnd.dcst.NB.pDT
+
 #' SD/Mean of date
 load(file = "data/output_data/lasp_dateTime_meanSD.Rdata")
 
@@ -184,7 +187,8 @@ dfms.lasp <- fitList(
   "lam(numwood)p(date+time)gamma(.)omega(.)-NB"  = lasp.abnd.st.NB.pDT,
   "lam(dy_pre2015)p(date+time)gamma(.)omega(.)-NB"  = lasp.abnd.d.NB.pDT,
   "lam(null)p(date+time)gamma(.)omega(.)-NB"  = lasp.abnd.null.NB.pDT,
-  "lam(litter)p(date+time)gamma(.)omega(.)-NB"  = lasp.abnd.l.NB.pDT)
+  "lam(litter)p(date+time)gamma(.)omega(.)-NB"  = lasp.abnd.l.NB.pDT,
+  "lam(dy_pre2015+canopy+numwood)p(date+time)gamma(.)omega(.)-NB"  = lasp.abnd.dcst.NB.pDT)
 #'
 #'
 #'
