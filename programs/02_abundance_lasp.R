@@ -385,6 +385,29 @@ dfms.final <- fitList(
 # modSel is a way to model selection results
 (dms <- modSel(dfms.final)) 
 
+
+# Final model with all three important covariates(disturbance, canopy, woody stems)
+(abnd.dcst.NB.pDT <- pcountOpen(lambdaformula = ~DY_pre2015 + ~numwood + ~canopy, # initial abundance
+                             pformula = ~date + time, # detection model
+                             gammaformula = ~1,  # recruitment
+                             omegaformula = ~1, # survival probability
+                             data = analysis.umf,
+                             mixture = "NB", 
+                             K=20))
+
+#' Fit List (again, because why the heck not)
+dfms.final.final <- fitList(
+  "lam(canopy)p(date+time)gamma(.)omega(.)-NB"  = abnd.c.NB.pDT,
+  "lam(numwood)p(date+time)gamma(.)omega(.)-NB"  = abnd.st.NB.pDT,
+  "lam(dy_pre2015)p(date+time)gamma(.)omega(.)-NB"  = abnd.d.NB.pDT,
+  "lam(null)p(date+time)gamma(.)omega(.)-NB"  = abnd.null.NB.pDT,
+  "lam(litter)p(date+time)gamma(.)omega(.)-NB"  = abnd.l.NB.pDT,
+  "lam(dy_pre2015+canopy+numwood)p(date+time)gamma(.)omega(.)-NB"  = abnd.dcst.NB.pDT)
+
+# Rank them by AIC
+# modSel is a way to model selection results
+(dms <- modSel(dfms.final.final)) 
+
 #' _____________________________________________________________________________
 #' ## Save files for results table
 #' 
@@ -393,6 +416,7 @@ save(abnd.st.NB.pDT, file = "data/output_data/lasp_abnd_st_NB_pDT.Rdata")
 save(abnd.d.NB.pDT, file = "data/output_data/lasp_abnd_d_NB_pDT.Rdata")
 save(abnd.null.NB.pDT, file = "data/output_data/lasp_abnd_null_NB_pDT.Rdata")
 save(abnd.l.NB.pDT, file = "data/output_data/lasp_abnd_l_NB_pDT.Rdata")
+save(abnd.dcst.NB.pDT, file = "data/output_data/lasp_abnd_dcst_NB_pDT.Rdata")
 #' SD/Mean of date
 save(date.sd.lasp, date.mean.lasp, 
      time.sd.lasp, time.mean.lasp,

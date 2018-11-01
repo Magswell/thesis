@@ -244,6 +244,15 @@ confint(lasp.abnd.l.NB.pDT, type="gamma", level=0.85)
 coef(lasp.abnd.l.NB.pDT, type="omega")
 confint(lasp.abnd.l.NB.pDT, type="omega", level=0.85)
 
+#' Model 6 (disturbance, canopy, numwood)
+coef(abnd.dcst.NB.pDT, type="lambda")
+confint(abnd.dcst.NB.pDT, type = "lambda", level = 0.85)
+coef(abnd.dcst.NB.pDT, type="det")
+confint(abnd.dcst.NB.pDT, type="det", level=0.85)
+coef(abnd.dcst.NB.pDT, type="gamma")
+confint(abnd.dcst.NB.pDT, type="gamma", level=0.85)
+coef(abnd.dcst.NB.pDT, type="omega")
+confint(abnd.dcst.NB.pDT, type="omega", level=0.85)
 
 #' _____________________________________________________________________________
 #' ### Plot LASP
