@@ -367,22 +367,27 @@ colnameskeep.eato <- c("plot",colnames(eato.data)[grep("^v",colnames(eato.data))
 eato.data <- eato.data[,colnameskeep.eato]
 
 #' Create function to get descriptive results
-description <- function(dataset){
-  datacolumns <- colnames(dataset)[grep("^v",colnames(dataset))]
+description <- function(dataset, pattern){
+  datacolumns <- colnames(dataset)[grep(pattern,colnames(dataset))]
   number.unoccupied <- number.occupied <- 0
   mean.count.each.occupied.plots <- NA
   for(row in 1:nrow(dataset)){
-    test <- table(dataset[row,datacolumns]>1)
-    if(is.na(test[2])){
+    data.subset <- dataset[row,!is.na(dataset[row,])]
+    data.subset <- data.subset[,2:ncol(data.subset)]
+    test.all.unoccupied <- 
+      ifelse(test = as.numeric(rowSums(data.subset))>=1,
+             yes = FALSE,
+             no = TRUE)
+    if(test.all.unoccupied==T){
       print(paste0("plot ", dataset$plot[row]," was unoccupied"))
       number.unoccupied <- number.unoccupied + 1
     }else{
       print(paste0("plot ", dataset$plot[row]," was occupied"))
       number.occupied <- number.occupied + 1
+      data.occupied <- data.subset[,data.subset[,]>=1]
       mean.count.each.occupied.plots <- c(
         mean.count.each.occupied.plots,
-        mean(as.numeric(
-          dataset[row,datacolumns[as.logical(dataset[row,datacolumns]>1)]]))
+        mean(as.numeric(data.occupied))
       )
     }
   }
@@ -399,10 +404,10 @@ description <- function(dataset){
 }
 
 #' ### Descriptive results for LASP
-description(lasp.data)
+description(dataset = lasp.data, pattern = "^v")
 
 #' ### Descriptive results for EATO
-description(eato.data)
+description(dataset = eato.data, pattern = "^v")
 
 #' _____________________________________________________________________________
 #' ### Footer
