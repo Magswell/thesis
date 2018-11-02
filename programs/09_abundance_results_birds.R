@@ -368,7 +368,7 @@ eato.data <- eato.data[,colnameskeep.eato]
 
 #' Create function to get descriptive results
 description <- function(dataset){
-  datacolumns <- colnames(dataset)[grep("^v",colnames(lasp.data))]
+  datacolumns <- colnames(dataset)[grep("^v",colnames(dataset))]
   number.unoccupied <- number.occupied <- 0
   mean.count.each.occupied.plots <- NA
   for(row in 1:nrow(dataset)){
