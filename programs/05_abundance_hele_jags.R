@@ -221,8 +221,8 @@ parms <- c("b0.abund", "b1.abund", "sd.abund", "b2.abund",
 
 #' MCMC settings (settings for final run, reduce 100-fold for exploratory analysis)
 na <- 1000 #final has 1000
-ni <- 250000 #final has 250000
-nt <- 10 #final has 10
+ni <- 2500000 #final has 250000
+nt <- 100 #final has 10
 nb <- 50000 #final has 50000
 nc <- 3 #final has 3
 
@@ -236,7 +236,7 @@ hele_JAGS <- jagsUI(data = hele.data,
                             n.thin = nt, 
                             n.iter = ni, 
                             n.burnin = nb, 
-                            parallel=FALSE, 
+                            parallel=FALSE,
                             codaOnly = c("z","N.true"))
 #' Model output
 print(hele_JAGS, digits=3)
