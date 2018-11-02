@@ -145,7 +145,7 @@ abnd.eato.plot <- ggplot(data = nd.eato, aes(x=canopyOrig, y=lam.predict.mean)) 
   xlab("Canopy Cover") +
   annotate("text", label = "A", x=10, y=5) +
   theme_classic()
-ggsave(filename = "output/EATO_plotA_thesis.png",device = "png")
+#ggsave(filename = "output/EATO_plotA_thesis.png",device = "png")
 
 #' Detection plot
 det.eato.plot <- ggplot(data = nd.eato, aes(x=dateOrig, y=p.predict.mean)) +
@@ -156,7 +156,7 @@ det.eato.plot <- ggplot(data = nd.eato, aes(x=dateOrig, y=p.predict.mean)) +
   xlab("Days past May 1") +
   annotate("text", label = "B", x=22, y=1) +
   theme_classic()
-ggsave(filename = "output/EATO_plotB_thesis.png",device = "png")
+#ggsave(filename = "output/EATO_plotB_thesis.png",device = "png")
 
 #' Organize abundance and detection plots side-by-side in one graphic
 #+ resultsEATO
@@ -310,7 +310,7 @@ abnd.lasp.c.plot <- ggplot(data = nd.lasp, aes(x=canopyOrig, y=lam.predict.mean.
   xlab("Canopy Cover") +
   annotate("text", label = "A", x=10, y=5) +
   theme_classic()
-ggsave(filename = "output/LASP_plotA_thesis.png",device = "png")
+#ggsave(filename = "output/LASP_plotA_thesis.png",device = "png")
 
 abnd.lasp.ns.plot <- ggplot(data = nd.lasp, aes(x=numwoodOrig, y=lam.predict.mean.numwood)) +
   geom_line()+
@@ -321,7 +321,7 @@ abnd.lasp.ns.plot <- ggplot(data = nd.lasp, aes(x=numwoodOrig, y=lam.predict.mea
   xlab("Number of Woody Stems") +
   annotate("text", label = "B", x=1, y=5) +
   theme_classic()
-ggsave(filename = "output/LASP_plotB_thesis.png",device = "png")
+#ggsave(filename = "output/LASP_plotB_thesis.png",device = "png")
 
 grid.arrange(abnd.lasp.c.plot, abnd.lasp.ns.plot, ncol = 2)
 
@@ -352,6 +352,57 @@ grid.arrange(abnd.lasp.c.plot.dnr, abnd.lasp.ns.plot.dnr, ncol = 2)
 #' ## Save files
 #' 
 #' 
+
+#' _____________________________________________________________________________
+#' ## Descriptive results
+#' 
+#' Load lasp data
+lasp.data <- read.csv("data/raw_data/20171020_LASP_pc.csv") 
+colnameskeep.lasp <- c("plot",colnames(lasp.data)[grep("^v",colnames(lasp.data))])
+lasp.data <- lasp.data[,colnameskeep.lasp]
+
+#' Load eato data
+eato.data <- read.csv("data/raw_data/20171024_EATO_pc.csv") 
+colnameskeep.eato <- c("plot",colnames(eato.data)[grep("^v",colnames(eato.data))])
+eato.data <- eato.data[,colnameskeep.eato]
+
+#' Create function to get descriptive results
+description <- function(dataset){
+  datacolumns <- colnames(dataset)[grep("^v",colnames(lasp.data))]
+  number.unoccupied <- number.occupied <- 0
+  mean.count.each.occupied.plots <- NA
+  for(row in 1:nrow(dataset)){
+    test <- table(dataset[row,datacolumns]>1)
+    if(is.na(test[2])){
+      print(paste0("plot ", dataset$plot[row]," was unoccupied"))
+      number.unoccupied <- number.unoccupied + 1
+    }else{
+      print(paste0("plot ", dataset$plot[row]," was occupied"))
+      number.occupied <- number.occupied + 1
+      mean.count.each.occupied.plots <- c(
+        mean.count.each.occupied.plots,
+        mean(as.numeric(
+          dataset[row,datacolumns[as.logical(dataset[row,datacolumns]>1)]]))
+      )
+    }
+  }
+  print(paste0(
+    number.occupied, " out of ", number.unoccupied + number.occupied, " (",
+    round(number.occupied/(number.unoccupied + number.occupied)*100, digits = 2),
+    "%) plots were occupied"))
+  print(paste0("Mean abundance in occupied plots was ",
+               round(mean(mean.count.each.occupied.plots, na.rm = T),digits=2),
+               " +/- ",
+               round(sd(mean.count.each.occupied.plots, na.rm = T)/
+                       sqrt(length(mean.count.each.occupied.plots)-1),digits=2),
+               " SE"))
+}
+
+#' ### Descriptive results for LASP
+description(lasp.data)
+
+#' ### Descriptive results for EATO
+description(eato.data)
 
 #' _____________________________________________________________________________
 #' ### Footer
