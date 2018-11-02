@@ -381,17 +381,22 @@ description <- function(dataset, pattern){
   number.unoccupied <- number.occupied <- 0
   mean.count.each.occupied.plots <- NA
   for(row in 1:nrow(dataset)){
-    test <- table(dataset[row,datacolumns]>1)
-    if(is.na(test[2])){
+    data.subset <- dataset[row,!is.na(dataset[row,])]
+    data.subset <- data.subset[,2:ncol(data.subset)]
+    test.all.unoccupied <- 
+      ifelse(test = as.numeric(rowSums(data.subset))>=1,
+             yes = FALSE,
+             no = TRUE)
+    if(test.all.unoccupied==T){
       print(paste0("plot ", dataset$plot[row]," was unoccupied"))
       number.unoccupied <- number.unoccupied + 1
     }else{
       print(paste0("plot ", dataset$plot[row]," was occupied"))
       number.occupied <- number.occupied + 1
+      data.occupied <- data.subset[,data.subset[,]>=1]
       mean.count.each.occupied.plots <- c(
         mean.count.each.occupied.plots,
-        mean(as.numeric(
-          dataset[row,datacolumns[as.logical(!is.na(dataset[row,datacolumns]>1))]]))
+        mean(as.numeric(data.occupied))
       )
     }
   }
