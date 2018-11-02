@@ -33,7 +33,7 @@ set.seed(2583722)
 load("data/output_data/cipa_JAGS_out_final.Rdata")
 
 #' HELE model
-load("data/output_data/hele_JAGS_out_20181031.Rdata")
+load("data/output_data/hele_JAGS_out_20181102.Rdata")
 
 #' **Unmarked models**
 #' 
@@ -309,7 +309,7 @@ b1.psi <- hele_JAGS$sims.list$b1.psi
 quantile(b1.psi, probs = c(0.075, 0.925))
 
 
-#' ### Violin Plot for CIPA
+#' ### Violin Plot for HELE
 #' 
 #+ hele_violin
 b0.abnd <- as.data.frame(b0.abnd)
