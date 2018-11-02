@@ -14,7 +14,7 @@ library(jagsUI)
 #' Clear environment and set seed
 #' 
 remove(list = ls())
-set.seed(2583722)
+set.seed(2583728)
 
 #' _____________________________________________________________________________
 #' ## Load Data
@@ -216,8 +216,7 @@ sink()
 #' Parameters monitored
 parms <- c("b0.abund", "b1.abund", "sd.abund", "b2.abund", 
            "b0.psi", "b1.psi", 
-           "alpha.p", "beta.p", "p.derived",
-           "z", "N.true") 
+           "alpha.p", "beta.p", "p.derived") 
 
 #' MCMC settings (settings for final run, reduce 100-fold for exploratory analysis)
 na <- 1000 #final has 1000
@@ -236,8 +235,7 @@ hele_JAGS <- jagsUI(data = hele.data,
                             n.thin = nt, 
                             n.iter = ni, 
                             n.burnin = nb, 
-                            parallel=FALSE, 
-                            codaOnly = c("z","N.true"))
+                            parallel=FALSE)
 #' Model output
 print(hele_JAGS, digits=3)
 
@@ -245,7 +243,7 @@ print(hele_JAGS, digits=3)
 #' ## Save files
 #' 
 #' 
-save(hele_JAGS, file="data/output_data/hele_JAGS_out_prelim_20181031.Rdata")
+save(hele_JAGS, file="data/output_data/hele_JAGS_out_20181102.Rdata")
 
 #' _____________________________________________________________________________
 #' ### Footer
