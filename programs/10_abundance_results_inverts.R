@@ -213,7 +213,11 @@ hele.abnd.c.NB
 #' ### JAGS results
 #' 
 #' CIPA model results
-cipa_JAGS$summary
+print(cipa_JAGS$summary, digits = 2)
+
+#' Save as a table
+cipa_jags_summary_table <- cipa_JAGS$summary
+write.csv(cipa_jags_summary_table, file = "data/output_data/cipa_jags_summary_table.csv")
 
 #' CIPA CRIs for model effect sizes
 #' 
