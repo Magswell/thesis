@@ -69,6 +69,7 @@ dfms.eato <- fitList(
 
 #' Transform parameters
 #' 
+#' 
 #'  Model 1 (canopy)
 coef(eato.abnd.c.P.pD, type="lambda")
 confint(eato.abnd.c.P.pD, type="lambda", level=0.85)
@@ -88,6 +89,10 @@ coef(eato.abnd.null.P.pD, type="gamma")
 confint(eato.abnd.null.P.pD, type="gamma", level=0.85)
 coef(eato.abnd.null.P.pD, type="omega")
 confint(eato.abnd.null.P.pD, type="omega", level=0.85)
+
+#' Transformed to get mean predicted abundance
+exp(coef(eato.abnd.null.P.pD, type="lambda"))
+exp(confint(eato.abnd.null.P.pD, type="lambda", level=0.85))
 
 #'  Model 3 (disturbance)
 coef(eato.abnd.d.P.pD, type="lambda")
