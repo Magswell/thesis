@@ -296,11 +296,11 @@ ggplot(aes(y = Posteriors, x = Covariate), data = posteriors.cipa) +
 b0.abnd <- hele_JAGS$sims.list$b0.abund
 quantile(b0.abnd, probs = c(0.075, 0.925))
 
-#' Abundance covariate: elevation
+#' Abundance covariate: disturbance
 b1.abnd <- hele_JAGS$sims.list$b1.abund
 quantile(b1.abnd, probs = c(0.075, 0.925))
 
-#' Abundance covariate: canopy
+#' Abundance covariate: liatris
 b2.abnd <- hele_JAGS$sims.list$b2.abund
 quantile(b2.abnd, probs = c(0.075, 0.925))
 
