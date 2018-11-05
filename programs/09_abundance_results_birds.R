@@ -69,6 +69,7 @@ dfms.eato <- fitList(
 
 #' Transform parameters
 #' 
+#' 
 #'  Model 1 (canopy)
 coef(eato.abnd.c.P.pD, type="lambda")
 confint(eato.abnd.c.P.pD, type="lambda", level=0.85)
