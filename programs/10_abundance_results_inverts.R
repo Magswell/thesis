@@ -213,7 +213,7 @@ hele.abnd.c.NB
 #' ### JAGS results
 #' 
 #' CIPA model results
-print(cipa_JAGS$summary, digits = 2)
+print(cipa_JAGS$summary, digits = 3)
 
 #' Save as a table
 cipa_jags_summary_table <- cipa_JAGS$summary
