@@ -312,6 +312,13 @@ quantile(b2.abnd, probs = c(0.075, 0.925))
 b1.psi <- hele_JAGS$sims.list$b1.psi
 quantile(b1.psi, probs = c(0.075, 0.925))
 
+#' hele model results
+print(hele_JAGS$summary, digits = 3)
+
+#' Save as a table
+hele_jags_summary_table <- hele_JAGS$summary
+write.csv(hele_jags_summary_table, file = "data/output_data/hele_jags_summary_table.csv")
+
 
 #' ### Violin Plot for HELE
 #' 
