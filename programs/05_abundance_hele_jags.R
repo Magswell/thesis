@@ -235,7 +235,7 @@ hele_JAGS <- jagsUI(data = hele.data,
                             n.thin = nt, 
                             n.iter = ni, 
                             n.burnin = nb, 
-                            parallel=TRUE)
+                            parallel=FALSE)
 #' Model output
 print(hele_JAGS, digits=3)
 
