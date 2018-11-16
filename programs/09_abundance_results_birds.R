@@ -179,7 +179,34 @@ ggplot(data = nd.eato, aes(x=canopyOrig, y=lam.predict.mean)) +
   xlab("Canopy Cover") +
   theme_classic()
 
+# Figure for Defense
+ggplot(data = nd.eato, aes(x=canopyOrig, y=lam.predict.mean)) +
+  geom_line()+
+  geom_ribbon(aes(ymin=lam.predict.85LL, ymax=lam.predict.85UL), alpha=0.3) +
+  geom_hline(yintercept=0, col = "red")+
+  ylim(c(0,5)) +
+  xlim(c(0,100)) +
+  ylab(expression(paste("Relative Abundance"))) +
+  xlab("Canopy Cover") +
+  #annotate("text", label = "A", x=10, y=5) +
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"))
 
+#ggsave(filename = "output/EATO_canopyPlot_defense.png",device = "png")
+
+ggplot(data = nd.eato, aes(x=dateOrig, y=p.predict.mean)) +
+  geom_line()+
+  geom_ribbon(aes(ymin=p.predict.85LL, ymax=p.predict.85UL), alpha=0.3) +
+  geom_hline(yintercept=0, col = "red")+
+  ylim(c(0,1)) +
+  ylab("Probability of Detection") +
+  xlab("Days past May 1") +
+  annotate("text", label = "B", x=22, y=1) +
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"))
+#ggsave(filename = "output/EATO_detectionPlot_defense.png",device = "png")
 
 #' _____________________________________________________________________________
 #' ## Lasp results
