@@ -144,3 +144,37 @@ description(dataset = hele.abnd, pattern = "^hele")
 
 #' ### Descriptive results for HENA
 description(dataset = hena.data, pattern = "^hena")
+
+
+
+#' Plot for defense
+plotting.data <- as.data.frame(matrix(data = NA,nrow = 1,ncol = 4))
+colnames(plotting.data) <- c("variable", "est.mean", "ll85", "ul85")
+plotting.data$variable<- "Disturbance"
+plotting.data$est.mean <- 4.13
+plotting.data$ll85 <- 2.58
+plotting.data$ul85 <- 5.68
+
+plotting.data$Species<-"Lark Sparrow"
+
+ggplot(plotting.data,aes(x=variable,y=est.mean))+
+  geom_point(size=4)+
+  geom_linerange(aes(ymin=ll85,ymax=ul85))+
+  geom_hline(yintercept=0, col="red")+
+  #theme_bw(base_size = 20)+
+  xlab(NULL)+
+  ylab("Relative Abundance")+
+  ylim(0,6)+
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"))
+  #ggtitle("Response to Oak Savanna Restoration Techniques")
+#ggsave(filename = "output/LASP_disturbance_lineplot_defense.png",device = "png")
+
+
+
+
+
+
+
+
