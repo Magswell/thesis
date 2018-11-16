@@ -202,7 +202,7 @@ ggplot(data = nd.eato, aes(x=dateOrig, y=p.predict.mean)) +
   ylim(c(0,1)) +
   ylab("Probability of Detection") +
   xlab("Days past May 1") +
-  annotate("text", label = "B", x=22, y=1) +
+  #annotate("text", label = "B", x=22, y=1) +
   theme_tufte()+
   theme(axis.text=element_text(size=20, colour="black"),
         axis.title=element_text(size=20,face="bold"))
@@ -380,6 +380,34 @@ abnd.lasp.ns.plot.dnr <- ggplot(data = nd.lasp, aes(x=numwoodOrig, y=lam.predict
   theme_classic()
 
 grid.arrange(abnd.lasp.c.plot.dnr, abnd.lasp.ns.plot.dnr, ncol = 2)
+
+#' Figure for defense
+ggplot(data = nd.lasp, aes(x=canopyOrig, y=lam.predict.mean.canopy)) +
+  geom_line()+
+  geom_ribbon(aes(ymin=lam.predict.85LL.canopy, ymax=lam.predict.85UL.canopy), alpha=0.3) +
+  geom_hline(yintercept = 0, col = "red")+
+  ylim(c(0,6)) +
+  xlim(c(0,100)) +
+  ylab("Relative Abundance") +
+  xlab("Canopy Cover") +
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"))
+#ggsave(filename = "output/LASP_canopyPlot_defense.png",device = "png")
+
+ggplot(data = nd.lasp, aes(x=numwoodOrig, y=lam.predict.mean.numwood)) +
+  geom_line()+
+  geom_ribbon(aes(ymin=lam.predict.85LL.numwood, ymax=lam.predict.85UL.numwood), alpha=0.3) +
+  geom_hline(yintercept = 0, col = "red")+
+  ylim(c(0,5)) +
+  xlim(c(0,20)) +
+  ylab("Mean Abundance") +
+  xlab("Number of Woody Stems") +
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"))
+#ggsave(filename = "output/LASP_stemsPlot_defense.png",device = "png")
+
 #' _____________________________________________________________________________
 #' ## Save files
 #' 
