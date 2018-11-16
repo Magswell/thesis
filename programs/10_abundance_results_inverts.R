@@ -294,6 +294,20 @@ ggplot(aes(y = Posteriors, x = Covariate), data = posteriors.cipa) +
 #   when the file viewer is set up to appropriate size
 #ggsave(filename = "output/CIPA_violin_thesis.png",device = "png")
 
+#' violin for defense
+ggplot(aes(y = Posteriors, x = Covariate), data = posteriors.cipa) + 
+  geom_violin() +
+  facet_wrap(facets = "Model") +
+  stat_summary(fun.data=data_summary, 
+               geom="pointrange", color="red") +
+  geom_hline(yintercept = 0)+
+  ylab("Effect Sizes")+
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"),
+        strip.text = element_text(size=20))
+#ggsave(filename = "output/CIPA_violinPlot_defense.png",device = "png")
+
 #' HELE CRIs for model effect sizes
 #' 
 #' Abundance intercept
@@ -373,7 +387,19 @@ ggplot(aes(y = Posteriors, x = Covariate), data = posteriors.hele) +
 #   when the file viewer is set up to appropriate size
 #ggsave(filename = "output/HELE_violin_thesis.png",device = "png")
 
-
+#' Violin for defense
+ggplot(aes(y = Posteriors, x = Covariate), data = posteriors.hele) + 
+  geom_violin() +
+  facet_grid(facets = .~Model, scales = "free_x", space = "free_x") +
+  stat_summary(fun.data=data_summary, 
+               geom="pointrange", color="red") +
+  geom_hline(yintercept = 0)+
+  ylab("Effect Sizes")+
+  theme_tufte()+
+  theme(axis.text=element_text(size=20, colour="black"),
+        axis.title=element_text(size=20,face="bold"),
+        strip.text = element_text(size=20))
+#ggsave(filename = "output/HELE_violinPlot_defense.png",device = "png")
 
 #' _____________________________________________________________________________
 #' ### Footer
