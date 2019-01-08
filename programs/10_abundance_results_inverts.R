@@ -14,6 +14,7 @@ library(unmarked) # analysis-related
 library(ggplot2)
 library(ggthemes)
 library(gridExtra)
+library(jagsUI) # needed to view traceplots
 
 #' Clear environment and set seed
 #' 
