@@ -9,7 +9,7 @@ library(knitr) # documentation-related
 library(ezknitr) # documentation-related
 library(devtools) # documentation-related
 library(StreamMetabolism) # Includes sunrise / sunset function sunrise.set
-library(lubridate) # Date / time functions
+library(lubridate) # Date and time functions
 library(dplyr)
 
 #' Clear environment and set seed
