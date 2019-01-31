@@ -239,6 +239,8 @@ hele_JAGS <- jagsUI(data = hele.data,
 #' Model output
 print(hele_JAGS, digits=3)
 
+max(max.rhat<- c(sapply(hele_JAGS$Rhat,max,na.rm=TRUE)))
+
 #' _____________________________________________________________________________
 #' ## Save files
 #' 
