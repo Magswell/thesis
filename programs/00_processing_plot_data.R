@@ -18,7 +18,7 @@ set.seed(2583722)
 #' _____________________________________________________________________________
 #' ## Load Data
 #' 
-#' Using lark sparrow (lasp) data to pull off plot-level variables
+#' Using lark sparrow (LASP) data to pull off plot-level variables
 #' 
 lasp.data <- read.csv("data/raw_data/20171020_LASP_occ.csv")
 
